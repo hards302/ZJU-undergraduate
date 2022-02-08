@@ -25,7 +25,7 @@ ZJU ads course project for hjc, zdz,mht.
 ## 代码规范
 
 ## Project 要求
-(缺少第5个project texture packing，当然这个我们也不会选)
+(缺少第7个project，当然这个我们也不会选)
 ![](./0_ProjectRequirement/1.png)
 ![](./0_ProjectRequirement/2.png)
 ![](./0_ProjectRequirement/3.png)
