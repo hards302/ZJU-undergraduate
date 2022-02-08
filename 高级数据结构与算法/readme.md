@@ -1,3 +1,0 @@
-wc的ads
-
-project是7选1。做了6个，lab1_heapDijkstra,lab2_safe_fruit,lab3_BeautifulSubsequence,lab4_HuffmanCodes,lab5_TexturePacking,lab6_SkipList。
