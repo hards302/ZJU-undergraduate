@@ -1,0 +1,86 @@
+.ORIG x3000
+		AND R0, R0, #0
+		AND R3, R3, #0
+		LEA R0, PROMPT
+		PUTS
+		LEA R1, NAME
+GETNAME	GETC
+		OUT
+		ADD R2, R0, #-10
+		BRz START
+		STR R0, R1, #0
+		ADD R1, R1, #1
+		BR GETNAME            ;above is input
+START		AND R0, R0, #0
+		STR R0, R1, #0          ;set the last of the name x0000
+	    	LEA R1, NAME
+		LD R2, LINKBEGIN
+		LDR R2, R2, #0
+LOOP0		ADD R3, R2, #2
+		LDR R3, R3, #0
+LOOP1		LDR R4, R1, #0          ;check the first name
+		LDR R5, R3, #0
+		ADD R6, R4, R5
+		BRz FOUND
+		ADD R1, R1, #1
+		ADD R3, R3, #1
+		NOT R4, R4
+		ADD R4, R4 #1
+		ADD R4, R4, R5
+		BRz LOOP1
+		LEA R1, NAME
+		ADD R3, R2, #3
+		LDR R3, R3, #0
+LOOP2  		LDR R4, R1, #0        ;check the second name
+		LDR R5, R3, #0
+		ADD R6, R4, R5
+		BRz FOUND
+		ADD R1, R1, #1
+		ADD R3, R3, #1
+		NOT R4, R4
+		ADD R4, R4 #1
+		ADD R4, R4, R5
+		BRz LOOP2
+NEXT    		LEA R1, NAME          ;check the next dot
+		LDR R2, R2, #0
+		BRz OVER
+		BR LOOP0
+FOUND		ADD R0, R0, #0
+		BRz OUTPUT
+		AND R0, R0, #0        ;print an enter
+		ADD R0, R0, #10
+		OUT
+OUTPUT		ADD R0, R2, #2        ;if is found
+		LDR R0, R0, #0
+		PUTS
+		AND R0, R0, #0
+		ADD R0, R0, #8
+		ADD R0, R0, #8
+		ADD R0, R0, #8
+		ADD R0, R0, #8
+		OUT
+		ADD R0, R2, #3
+		LDR R0, R0, #0
+		PUTS
+		AND R0, R0, #0
+		ADD R0, R0, #8
+		ADD R0, R0, #8
+		ADD R0, R0, #8
+		ADD R0, R0, #8
+		OUT
+		ADD R0, R2, #1
+		LDR R0, R0, #0
+		PUTS
+		BR NEXT
+OVER    		ADD R0, R0, #0         
+		BRz NOFOUND
+		HALT
+NOFOUND	LEA R0, NOTFOUND           ;if is not found
+		PUTS
+		HALT
+NAME .BLKW #20
+LINKBEGIN .FILL x4000
+NOTFOUND .STRINGZ "NOT FOUND"
+NOP .FILL x0000
+PROMPT  .STRINGZ "Type a name and press Enter: "
+.END
