@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/htmiao/spiking-ddpg-mapless-navigation/ros/catkin_ws/devel/setup.sh
